@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de vue 3</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- <div :style="{backgroundColor: bgColor , color: textColor}"> -->
+      <div :style="styles">
+        <label for="themeBlack">
+          <input
+            type="checkbox"
+            :checked="themeBlack"
+            @click="toogleTheme"
+            name="themeBlack"
+            id="themeBlack"
+          />
+          Tema Escuro
+        </label>
+        <h1>{{title}}</h1>
+        <p>{{ nome}} {{lastname}}</p>
+        <hr />
+        <p>Nome-Computed: {{ fullname }}</p>
+
+        <hr />
+        <h3>Carrinho: {{card.length}}</h3>
+        <img
+          v-bind:src="flores.image"
+          v-bind:alt="flores.title"
+          style="max-width: 100px"
+        />
+        <strong v-if="flores.stars > 0">{{flores.stars}}</strong>
+        <br />
+        <img
+          :src="flores2.image"
+          v-bind:alt="flores.title"
+          style="max-width: 100px"
+        />
+        <strong v-show="flores2.stars > 0">{{flores2.stars}}</strong>
+
+        <ul>
+          <li v-for="(flor, index) in floresArr" :key="index">
+            <flores-detalhe
+                :flor="flor" 
+                :flor-in-carr="inCarr(flor)"
+                @add-flor-carr="addCarr">
+
+            </flores-detalhe>
+
+            <!-- <a href="#" @:click.prevent=" removeCarr(flor)" v-if="inCarr(flor)">
+              REMOVER DO CARRINHO</a
+            > -->
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--DIV app-->
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script src="./app.js"></script>
+    <script src="./components/FloDetail.js"></script>
+    <script>
+        app.mount("#app");
+    </script>
+  </body>
+</html>
